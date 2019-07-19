@@ -104,9 +104,9 @@
     <div class="maincont">
      <div class="userName">
       <dl class="names">
-       <dt><img src="{{asset('images/user01.png')}}" /></dt>
+       <dt><img src="{{$userInfo['headimgurl']}}" /></dt>
        <dd>
-        <h3>{{$userInfo['u_email']}}</h3>
+        <h3>{{$userInfo['nickname']}}</h3>
        </dd>
        <div class="clearfix"></div>
       </dl>

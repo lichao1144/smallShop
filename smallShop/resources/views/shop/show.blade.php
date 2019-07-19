@@ -19,6 +19,7 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+      <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
   </head>
   <body>
     <div class="maincont">
@@ -54,8 +55,8 @@
      </ul><!--reg-login-click/-->
     @else
     <div align="center" style="color:red">
-      
-        <li>欢迎{{$data['u_email']}}登陆!</li>
+
+        <li>欢迎{{$data['nickname']}}登陆!</li>
      <!--reg-login-click/-->
     </div>
     
@@ -159,5 +160,6 @@
 		 $("#sliderA").excoloSlider();
 		});
 	</script>
+
   </body>
 </html>

@@ -17,7 +17,7 @@ class CheckLogin
     {   
         if(!request()->session()->get('userInfo')){
            // $request->session()->forget('userInfo'); 
-          echo "<script>alert('请登陆！');location.href='/checklogin'</script>";  
+          echo "<script>alert('请登陆！');location.href='/login/login'</script>";
         }
         return $next($request);
     }

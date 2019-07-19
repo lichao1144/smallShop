@@ -217,6 +217,7 @@
           })
         })
 
+
         $('input[type=submit]').click(function(){
           var u_email=$('input[name=u_email]').val();
           var u_code=$('input[name=u_code]').val();
