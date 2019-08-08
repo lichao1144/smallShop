@@ -29,6 +29,7 @@ class AdminController extends Controller
     public function getImageCodeUrl(){
         session_start();
         $sid=session_id();
+        //dd($sid);
         $image_url='http://www.mouth7.com/image?sid='.$sid;
 
         $data=[
@@ -46,12 +47,10 @@ class AdminController extends Controller
         $sid=request()->get('sid');
         session_id($sid);
         session_start();
-        $rand=rand(1000,9999);
-        $_SESSION['code']=$rand;
         //输出一个图片
         header('Content-Type: image/png');
 // Create the image创建一个空的画板
-        $im = imagecreatetruecolor(100, 30);
+        $im = imagecreatetruecolor(300, 30);
 
 // Create some colors
         $white = imagecolorallocate($im, 255, 255, 255);
@@ -60,13 +59,49 @@ class AdminController extends Controller
         imagefilledrectangle($im, 0, 0, 399, 29, $white);
 
 // The text to draw
-        $text = ''.$rand;
+        $rand=rand(1,4);
+        switch ($rand){
+            case 1:
+                $a=rand(1,9);
+                $b=rand(1,9);
+                $result=$a+$b;
+                $text=$a.'+'.$b.'=?';
+                break;
+            case 2:
+                $a=rand(1,9);
+                $b=rand(1,9);
+                if($a<$b){
+                    list($a,$b)=[$b,$a];
+                }
+                $result=$a-$b;
+                $text=$a.'-'.$b.'=?';
+                break;
+            case 3:
+                $a=rand(1,9);
+                $b=rand(1,9);
+                $result=$a*$b;
+                $text=$a.'*'.$b.'=?';
+                break;
+            case 4:
+                $a=rand(1,9);//2
+                $b=rand(1,9);//4
+                $c=$a*$b;
+                $result=$a;
+                $text=$c.'/'.$b.'=?';
+            default:
+                break;
+        }
+        $_SESSION['code']=$result;
 // Replace path by your own font path*******windows+r 输入fonts
         $font = 'C:\Windows\Fonts\Arvo-Regular.ttf';
 
         $i=0;
-        while($i<4){
-            imagettftext($im, 20, rand(-30,30), 15+20*$i, 25, $black, $font, $text[$i]);
+        while($i<5){
+            if(is_numeric($text[$i])){
+                imagettftext($im, 14, rand(-30,30), 15+20*$i, 25, $black, $font, $text[$i]);
+            }else{
+                imagettftext($im, 14, 0, 15+20*$i, 25, $black, $font, $text[$i]);
+            }
             $i++;
         }
 
